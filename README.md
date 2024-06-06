@@ -1,64 +1,142 @@
-# Explore US Bike Share Data Project
+# US Bikeshare Data Analysis Project
 
 ## Overview
-In this project, I used Python to explore data related to bike share systems in three major U.S. cities: Chicago, New York City, and Washington, D.C. The goal was to write code that imports the data, computes descriptive statistics, and creates an interactive terminal experience to present these statistics based on user input.
 
-## Software Used
-- Python 3
-- NumPy
-- Pandas
+This project analyzes bikeshare data from three major US cities: Chicago, New York City, and Washington. The primary goal is to compute various statistics that provide insights into the patterns of bikeshare usage. The program allows users to filter the data by city, month, and day, and then displays statistics such as the most common travel times, popular stations, trip duration, and user demographics.
 
-## Project Steps
-1. **Download, Clean, and Preprocess the Data**: Obtain the datasets, clean them, and preprocess them for analysis.
-2. **Detect Bike Share Usage Patterns**: Use descriptive statistics to find patterns in the data.
-3. **Compare System Usage**: Compare bike share usage between Chicago, New York City, and Washington, D.C. Present the results based on user questions.
+## Table of Contents
 
-## Statistics Computed
-### 1. Popular Times of Travel
-- **Most common month**
-- **Most common day of the week**
-- **Most common hour of the day**
+- [Introduction](#introduction)
+- [Dataset](#dataset)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Functions](#functions)
+  - [get_filters](#get_filters)
+  - [load_data](#load_data)
+  - [time_stats](#time_stats)
+  - [station_stats](#station_stats)
+  - [trip_duration_stats](#trip_duration_stats)
+  - [user_stats](#user_stats)
+  - [raw_data_request](#raw_data_request)
+  - [main](#main)
+- [Contributing](#contributing)
+- [License](#license)
 
-### 2. Popular Stations and Trips
-- **Most common start station**
-- **Most common end station**
-- **Most common trip from start to end (i.e., most frequent combination of start and end stations)**
+## Introduction
 
-### 3. Trip Duration
-- **Total travel time**
-- **Average travel time**
+This project provides a detailed analysis of bikeshare data from three cities in the US. Users can interactively select the city, month, and day to filter the data and view various statistics. The program also offers an option to view raw data.
 
-### 4. User Info
-- **Counts of each user type**
-- **Counts of each gender** (only available for NYC and Chicago)
-- **Earliest, most recent, most common year of birth** (only available for NYC and Chicago)
+## Dataset
 
-## An Interactive Experience
-The script creates an interactive terminal experience that answers questions about the dataset based on user input. The interaction is driven by the following questions:
+The dataset includes bikeshare information from three cities:
+- Chicago
+- New York City
+- Washington
 
-1. **Would you like to see data for Chicago, New York, or Washington?**
-2. **Would you like to filter the data by month, day, or not at all?**
-3. **(If month) Which month - January, February, March, April, May, or June?**
-4. **(If day) Which day - Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday?**
+Each dataset includes columns such as:
+- Start Time
+- End Time
+- Trip Duration
+- Start Station
+- End Station
+- User Type
+- Gender (only available for NYC and Chicago)
+- Birth Year (only available for NYC and Chicago)
 
-The answers to these questions determine the city and timeframe. After filtering the dataset, users will see the statistical results and can choose to start again or exit.
+## Installation
 
-## The Datasets
-The project includes three city dataset files:
-- **chicago.csv**
-- **new_york_city.csv**
-- **washington.csv**
+To run this project, you'll need to have Python installed. Additionally, the following Python libraries are required:
+- pandas
+- numpy
 
-Randomly selected data for the first six months of 2017 are provided for all three cities. All three datasets contain the following core six columns:
-- **Start Time** (e.g., 2017-01-01 00:07:57)
-- **End Time** (e.g., 2017-01-01 00:20:53)
-- **Trip Duration** (in seconds - e.g., 776)
-- **Start Station** (e.g., Broadway & Barry Ave)
-- **End Station** (e.g., Sedgwick St & North Ave)
-- **User Type** (Subscriber or Customer)
+You can install these libraries using pip:
 
-The Chicago and New York City files also include:
-- **Gender**
-- **Birth Year**
+```sh
+pip install pandas numpy
+```
 
-This project highlights the process of data analysis from data cleaning to presenting insights interactively, demonstrating the practical application of Python, NumPy, and Pandas in real-world scenarios.
+## Usage
+
+1. Clone the repository to your local machine.
+2. Ensure you have the required datasets (`chicago.csv`, `new_york_city.csv`, `washington.csv`) in the same directory as the script.
+3. Run the script:
+
+```sh
+python bikeshare.py
+```
+
+4. Follow the prompts to select the city, month, and day for analysis.
+
+## Functions
+
+### get_filters
+
+Asks the user to specify a city, month, and day to analyze.
+
+**Returns:**
+- `city` (str): Name of the city to analyze.
+- `month` (str): Name of the month to filter by, or "all" to apply no month filter.
+- `day` (str): Name of the day of week to filter by, or "all" to apply no day filter.
+
+### load_data
+
+Loads data for the specified city and filters by month and day if applicable.
+
+**Args:**
+- `city` (str): Name of the city to analyze.
+- `month` (str): Name of the month to filter by, or "all" to apply no month filter.
+- `day` (str): Name of the day of week to filter by, or "all" to apply no day filter.
+
+**Returns:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### time_stats
+
+Displays statistics on the most frequent times of travel.
+
+**Args:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### station_stats
+
+Displays statistics on the most popular stations and trip.
+
+**Args:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### trip_duration_stats
+
+Displays statistics on the total and average trip duration.
+
+**Args:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### user_stats
+
+Displays statistics on bikeshare users.
+
+**Args:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### raw_data_request
+
+Prompts the user if they want to see raw data and displays it in chunks of 5 rows at a time.
+
+**Args:**
+- `df` (DataFrame): Pandas DataFrame containing city data filtered by month and day.
+
+### main
+
+The main function that ties together all the above functions to create an interactive program.
+
+## Contributing
+
+Contributions to this project are welcome. Please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
+This README provides an overview of the project, installation instructions, a description of each function, and guidelines for contributing. By following these instructions, users should be able to understand and use the bikeshare data analysis project effectively.
